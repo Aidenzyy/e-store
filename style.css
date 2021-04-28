@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  background-color: #ddd;
+  font-size: 18px;
+  font-family: "Oswald", Arial, Helvetica, sans-serif;
+  margin: 50px;
+}
+
+/* Container */
+
+.container {
+  display: grid;
+  gap: 10px;
+}
+
+/* Header */
+
+.header {
+  display: grid;
+  grid-template-areas:
+    "hero hero feature-1"
+    "hero hero feature-2";
+}
+
+.hero {
+  grid-area: hero;
+  min-height: 350px;
+  background-image: url(img/hero.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 50px;
+}
+
+.hero > * {
+  display: none;
+}
+
+.feature {
+  background-color: black;
+  color: white;
+  display: grid;
+  /* place-content mencangkup align-content dan justify-content*/
+  place-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.feature-1 {
+  grid-area: feature-1;
+  background-image: url(img/fitur1.jpg);
+  background-size: cover;
+}
+
+.feature-2 {
+  grid-area: feature-2;
+  background-image: url(img/fitur2.jpg);
+  background-size: cover;
+}
+
+.feature .price {
+  font-size: 3em;
+  font-weight: 200;
+}
+
+/* Nacigation */
+
+.menu {
+  order: -1;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+
+.menu .branch {
+  font-size: 1.2em;
+  color: black;
+}
+
+.menu ul {
+  display: grid;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+  gap: 5px;
+}
+
+.menu a {
+  display: block;
+  background-color: black;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 3px;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+/* humberger menu */
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 999;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  left: -8px;
+  top: -5px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 23px;
+  height: 4px;
+  background-color: black;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+/* hamburger menu animation */
+.menu-toggle span:nth-child(2) {
+  transform-origin: 0 0%;
+}
+
+.menu-toggle span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2) {
+  background-color: white;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.menu-toggle input:checked ~ span:nth-child(4) {
+  background-color: white;
+  transform: rotate(-45deg) translate(1.5px, -2px);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Responsive Breakpoint */
+
+@media (max-width: 1024px) {
+  .menu {
+    order: inherit;
+    grid-template-columns: 1fr;
+  }
+
+  .menu .brand {
+    display: none;
+  }
+
+  .hero > * {
+    display: block;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu ul {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    z-index: 1;
+    justify-content: space-evenly;
+    transform: translateY(-100%);
+    transition: all 1s;
+    opacity: 0;
+  }
+
+  .menu ul.slide {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu {
+    order: -1;
+    justify-content: end;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    grid-template-areas:
+      "hero"
+      "feature-1"
+      "feature-2";
+  }
+}
+
+/* services */
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.service {
+  background-color: white;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.service .icon {
+  font-size: 3em;
+}
+
+.service h3 {
+  font-size: 1.4em;
+}
+
+.service p {
+  font-weight: 380;
+  letter-spacing: 0.5px;
+  font-size: 0.9em;
+}
